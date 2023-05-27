@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { CiSettings, CiMemoPad, CiRead, CiUndo } from "react-icons/ci";
 import styles from "./Header.module.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [showOptions, setShowOptions] = useState(false);
@@ -32,9 +33,19 @@ const Header = () => {
         <div className={styles.optionsContainer}>
           <div className={styles.optionsListContainer}>
             <ul style={{ listStyleType: "none" }}>
-              <li className={styles.liStyle}><CiMemoPad size={22} style={{ marginRight: 5 }} /> Archive</li>
-              <li className={styles.liStyle}><CiRead size={22} style={{ marginRight: 5 }} /> God Mode</li>
-              <li className={styles.liStyle}><CiUndo size={22} style={{ marginRight: 5 }} /> Log Out</li>
+              <Link to="archive/" style={{ textDecoration: "none" }}>
+                <li className={styles.liStyle}>
+                  <CiMemoPad size={22} style={{ marginRight: 5 }} /> Archive
+                </li>
+              </Link>
+              <Link to="12sdc349kcj9iqpnmxi9w30cmv32/" style={{ textDecoration: "none" }}>
+                <li className={styles.liStyle}>
+                  <CiRead size={22} style={{ marginRight: 5 }} /> God Mode
+                </li>
+              </Link>
+                <li className={styles.liStyle}>
+                  <CiUndo size={22} style={{ marginRight: 5 }} /> Log Out
+                </li>
             </ul>
           </div>
         </div>
