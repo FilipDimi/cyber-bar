@@ -1,0 +1,87 @@
+.headerContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  height: 75px;
+  width: 100%;
+}
+
+.header {
+  width: 95%;
+  background-color: rgb(62, 139, 154);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.settingsButton {
+  background-color: #ff5335;
+  /* box-shadow: none; */
+  border: none;
+  padding: 8px 10px;
+  border-radius: 5px;
+  color: #353943;
+  transition: 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+h3 {
+  color: #dee1d3;
+  font-weight: bold;
+}
+
+.settingsButton:hover {
+  background-color: #f13412;
+}
+
+.settingsButton:active {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.optionsContainer {
+  width: 100%;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  transition: 0.5s;
+  z-index: 10;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.optionsListContainer {
+  background-color: rgb(62, 139, 154);
+  border-radius: 15px;
+  width: 95%;
+  transition: 0.5;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.liStyle {
+  color: #dee1d3;
+  font-size: 18px;
+  padding: 15px 0px;
+  margin-right: 25px;
+  padding-left: 5px;
+}
+
+.liStyle:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+}
+
+.liStyle:active {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}

@@ -1,0 +1,30 @@
+.footerContainer {
+  background-color: #f8f9fa;
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 60px;
+  padding-bottom: 20px;
+}
+
+.buttonMargin {
+  margin: 0 5px;
+}
+
+.linkRemoveDec {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+.linkRemoveDec:hover {
+  color: #fda198;
+}
+
+.lowerMargin {
+  margin-bottom: -3px;
+}
+
+@media only screen and (max-width: 870px) {
+  .marginIfSm {
+    margin-bottom: 30px;
+  }
+}

@@ -1,0 +1,42 @@
+.navBarContainer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 75px;
+}
+
+.mainHContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(62, 139, 154);
+  color: white;
+  text-align: center;
+  width: 95%;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+  rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.navBarTabVContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkContainer {
+  text-decoration: none;
+  transition: 0.5s;
+  padding: 2px;
+}
+
+.linkContainer:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
