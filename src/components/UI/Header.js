@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CiSettings } from "react-icons/ci";
+import { CiSettings, CiMemoPad, CiRead, CiUndo } from "react-icons/ci";
 import styles from "./Header.module.css";
 
 const Header = () => {
@@ -32,9 +32,9 @@ const Header = () => {
         <div className={styles.optionsContainer}>
           <div className={styles.optionsListContainer}>
             <ul style={{ listStyleType: "none" }}>
-              <li className={styles.liStyle}>Archive</li>
-              <li className={styles.liStyle}>Admin</li>
-              <li className={styles.liStyle}>Log Out</li>
+              <li className={styles.liStyle}><CiMemoPad size={22} style={{ marginRight: 5 }} /> Archive</li>
+              <li className={styles.liStyle}><CiRead size={22} style={{ marginRight: 5 }} /> God Mode</li>
+              <li className={styles.liStyle}><CiUndo size={22} style={{ marginRight: 5 }} /> Log Out</li>
             </ul>
           </div>
         </div>

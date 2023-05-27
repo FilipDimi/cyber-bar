@@ -12,20 +12,20 @@ import CheckInScreen from "./screens/CheckInScreen";
 import Header from "./components/UI/Header";
 
 function App() {
-  const [activePage, setActivePage] = useState("Home");
+  const [activePage, setActivePage] = useState("");
 
   return (
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="inventory/" element={<InventoryScreen />} />
-        <Route path="bar/" element={<MenuScreen />} />
-        <Route path="discussion" element={<DiscussionScreen />} />
-        <Route path="checkin/" element={<CheckInScreen />} />
+        <Route path="/" element={<Homepage setCurPage={setActivePage} />} />
+        <Route path="inventory/" element={<InventoryScreen setCurPage={setActivePage} />} />
+        <Route path="bar/" element={<MenuScreen setCurPage={setActivePage} />} />
+        <Route path="discussion" element={<DiscussionScreen setCurPage={setActivePage} />} />
+        <Route path="checkin/" element={<CheckInScreen setCurPage={setActivePage} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-      <Footer />
+      <Footer actPage={activePage} />
     </Router>
   );
 }

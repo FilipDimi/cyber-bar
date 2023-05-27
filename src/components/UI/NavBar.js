@@ -9,46 +9,75 @@ import {
 } from "react-icons/ci";
 import styles from "./NavBar.module.css";
 
-const NavBar = () => {
+const CustomNavLink = (props) => {
+  return (
+    <Link to={props.link} className={styles.linkContainer}>
+      {props.activeLink === props.compareLink ? (
+        <div className={styles.navBarTabVContainer}>
+          {props.activeIcon}
+          <span style={{ color: "#FF5335", fontSize: 14 }}>{props.name}</span>
+        </div>
+      ) : (
+        <div className={styles.navBarTabVContainer}>
+          {props.inactiveIcon}
+          <span style={{ color: "#DFE0D4", fontSize: 14 }}>{props.name}</span>
+        </div>
+      )}
+    </Link>
+  );
+};
+
+const NavBar = (props) => {
+  console.log(props.activePage);
   return (
     <>
       <div className={styles.navBarContainer}>
         <div className={styles.mainHContainer}>
           {/* Home */}
-          <Link to="/" className={styles.linkContainer}>
-            <div className={styles.navBarTabVContainer}>
-              <CiHome size={26} color="#DFE0D4" />
-              <span style={{ color: "#DFE0D4", fontSize: 14 }}>Home</span>
-            </div>
-          </Link>
+          <CustomNavLink
+            link="/"
+            compareLink="/"
+            name="Home"
+            activeLink={props.activePage}
+            activeIcon={<CiHome size={26} color="#FF5335" />}
+            inactiveIcon={<CiHome size={26} color="#DFE0D4" />}
+          />
           {/* Inventory */}
-          <Link to="inventory/" className={styles.linkContainer}>
-            <div className={styles.navBarTabVContainer}>
-              <CiBeerMugFull size={26} color="#FF5335" />
-              <span style={{ color: "#FF5335", fontSize: 14 }}>Inventory</span>
-            </div>
-          </Link>
+          <CustomNavLink
+            link="inventory/"
+            compareLink="/inventory/"
+            name="Inventory"
+            activeLink={props.activePage}
+            activeIcon={<CiBeerMugFull size={26} color="#FF5335" />}
+            inactiveIcon={<CiBeerMugFull size={26} color="#DFE0D4" />}
+          />
           {/* Bar */}
-          <Link to="bar/" className={styles.linkContainer}>
-            <div className={styles.navBarTabVContainer}>
-              <CiBeaker1 size={26} color="#DFE0D4" />
-              <span style={{ color: "#DFE0D4", fontSize: 14 }}>Inventory</span>
-            </div>
-          </Link>
+          <CustomNavLink
+            link="bar/"
+            compareLink="/bar/"
+            name="Bar"
+            activeLink={props.activePage}
+            activeIcon={<CiBeaker1 size={26} color="#FF5335" />}
+            inactiveIcon={<CiBeaker1 size={26} color="#DFE0D4" />}
+          />
           {/* CheckIn */}
-          <Link to="discussion/" className={styles.linkContainer}>
-            <div className={styles.navBarTabVContainer}>
-              <CiChat1 size={26} color="#DFE0D4" />
-              <span style={{ color: "#DFE0D4", fontSize: 14 }}>Discussion</span>
-            </div>
-          </Link>
+          <CustomNavLink
+            link="discussion/"
+            compareLink="/discussion/"
+            name="Discussion"
+            activeLink={props.activePage}
+            activeIcon={<CiChat1 size={26} color="#FF5335" />}
+            inactiveIcon={<CiChat1 size={26} color="#DFE0D4" />}
+          />
           {/* Bar */}
-          <Link to="checkin/" className={styles.linkContainer}>
-            <div className={styles.navBarTabVContainer}>
-              <CiBoxes size={26} color="#DFE0D4" />
-              <span style={{ color: "#DFE0D4", fontSize: 14 }}>CheckIn</span>
-            </div>
-          </Link>
+          <CustomNavLink
+            link="checkin/"
+            compareLink="/checkin/"
+            name="Checkin"
+            activeLink={props.activePage}
+            activeIcon={<CiBoxes size={26} color="#FF5335" />}
+            inactiveIcon={<CiBoxes size={26} color="#DFE0D4" />}
+          />
         </div>
       </div>
     </>
