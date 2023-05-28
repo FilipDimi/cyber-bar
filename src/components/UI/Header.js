@@ -35,16 +35,16 @@ const Header = () => {
             <ul style={{ listStyleType: "none" }}>
               <Link to="archive/" style={{ textDecoration: "none" }}>
                 <li className={styles.liStyle}>
-                  <CiMemoPad size={22} style={{ marginRight: 5 }} /> Archive
+                  <CiMemoPad size={22} style={{ marginRight: 5 }} /> Archive <i style={{marginLeft: 20}}>Coming Soon</i>
                 </li>
               </Link>
               <Link to="12sdc349kcj9iqpnmxi9w30cmv32/" style={{ textDecoration: "none" }}>
-                <li className={styles.liStyle}>
-                  <CiRead size={22} style={{ marginRight: 5 }} /> God Mode
+                <li className={styles.liStyle} disabled>
+                  <CiRead size={22} style={{ marginRight: 5 }} /> God Mode  <i style={{marginLeft: 20}}>Coming Soon</i>
                 </li>
               </Link>
                 <li className={styles.liStyle}>
-                  <CiUndo size={22} style={{ marginRight: 5 }} /> Log Out
+                  <CiUndo size={22} color="#FF5335" style={{ marginRight: 5 }} /> <span style={{color: "#FF5335"}}>Log Out</span>
                 </li>
             </ul>
           </div>

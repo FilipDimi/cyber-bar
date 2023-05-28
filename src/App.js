@@ -15,11 +15,12 @@ import GodMode from "./screens/GodMode";
 
 function App() {
   const [activePage, setActivePage] = useState("");
+  console.ignoredYellowBox = ["Warning: Each", "Warning: Failed"];
 
   return (
     <Router>
       <Header />
-      <div style={{marginBottom: 90}}></div>
+      <div style={{marginBottom: 120}}></div>
       <Routes>
         <Route path="/" element={<Homepage setCurPage={setActivePage} />} />
         <Route path="inventory/" element={<InventoryScreen setCurPage={setActivePage} />} />

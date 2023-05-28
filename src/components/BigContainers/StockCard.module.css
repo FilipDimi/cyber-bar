@@ -1,0 +1,87 @@
+.mainStockContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.stockContainer {
+  background-color: #f0f0f0;
+  width: 80%;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stockHeading {
+  color: rgb(62, 139, 154);
+}
+
+.stockInput {
+  border-radius: 20px;
+  border: 1.5px solid rgb(62, 139, 154);
+  transition: 0.5s;
+  width: 80%;
+  padding: 15px 10px;
+}
+
+.searchTabContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  gap: 5px;
+  margin-top: 7px;
+  margin-bottom: 18px;
+}
+
+.quantityButtonContainer {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+
+.quantityHContainer {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 5px;
+}
+
+.quantityButton {
+  border: none;
+  padding: 10px 30px;
+  background-color: rgb(62, 139, 154);
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.updateButton {
+  border: none;
+  padding: 10px 0px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  background-color: #FF5335;
+  color: #353943;
+  border-radius: 12px;
+  width: 90%;
+  font-size: 16px;
+}
+
+.footerButtons {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.stockInfoItem {
+    color: rgb(62, 139, 154);
+}

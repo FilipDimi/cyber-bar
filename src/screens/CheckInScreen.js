@@ -13,6 +13,7 @@ const CheckInScreen = (props) => {
   return (
     <div>
       <h1>CheckIn</h1>
+      <h3>Coming Soon 🤩</h3>
     </div>
   );
 };

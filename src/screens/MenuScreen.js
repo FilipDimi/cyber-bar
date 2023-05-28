@@ -13,6 +13,7 @@ const MenuScreen = (props) => {
   return (
     <div>
       <h1>Menu</h1>
+      <h3>Coming Soon 🤩</h3>
     </div>
   );
 };

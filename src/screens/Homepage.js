@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import StockCard from "../components/BigContainers/StockCard";
 
 const Homepage = (props) => {
   const firstRender = useRef(true);
@@ -13,7 +14,7 @@ const Homepage = (props) => {
 
   return (
     <React.Fragment>
-      <h1>Home</h1>
+      <StockCard />
     </React.Fragment>
   );
 };

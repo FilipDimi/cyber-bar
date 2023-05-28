@@ -13,6 +13,7 @@ const DiscussionScreen = (props) => {
   return (
     <div>
       <h1>Discussion</h1>
+      <h3>Coming Soon 🤩</h3>
     </div>
   );
 };
