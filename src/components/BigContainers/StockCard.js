@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Checkbox, Button } from "@nextui-org/react";
+import { CiLocationArrow1 } from "react-icons/ci";
 import styles from "./StockCard.module.css";
 
 const drinks = [
@@ -15,6 +16,7 @@ const drinks = [
 let stocks = [];
 
 const StockCard = () => {
+  const [confirmReport, setConfirmReport] = useState(false);
   const [searchBox, setSearchBox] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
   const [quantity, setQuantity] = useState(0);
@@ -219,6 +221,27 @@ const StockCard = () => {
           <p className={styles.stockInfoItem} style={{ marginBottom: 30 }}>
             Your list is empty 🙁
           </p>
+        )}
+        {stocks.length > 0 && (
+          <>
+            <Checkbox
+              isSelected={confirmReport}
+              color="success"
+              onChange={setConfirmReport}
+            >
+              <span style={{ fontSize: 12 }}>
+                I agree that the summary is accurate
+              </span>
+            </Checkbox>
+            <Button
+              iconRight={<CiLocationArrow1 size={20} />}
+              color="success"
+              flat
+              css={{ marginBottom: 30 }}
+            >
+              Send Report
+            </Button>
+          </>
         )}
       </div>
     </div>
