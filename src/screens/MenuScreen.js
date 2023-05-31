@@ -11,8 +11,8 @@ const MenuScreen = (props) => {
     firstRender.current = false;
   }, [location.pathname]);
   return (
-    <div>
-      <h1>Menu</h1>
+    <div style={{marginLeft: 50}}>
+      <h1>Bar</h1>
       <h3>Coming Soon 🤩</h3>
     </div>
   );
