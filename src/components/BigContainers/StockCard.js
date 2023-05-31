@@ -94,11 +94,13 @@ const StockCard = () => {
                 searchBox.length > 2
               ) {
                 return (
-                  <>
+                  <div key={drink}>
                     <SearchDrinkTap name={drink} />
                     <ResetButton />
-                  </>
+                  </div>
                 );
+              } else {
+                return <span></span>
               }
             })}
           </div>
@@ -213,7 +215,7 @@ const StockCard = () => {
         <h2 className={styles.stockInfoItem}>Summary</h2>
         {stocks.length > 0 ? (
           stocks.map((stock) => (
-            <p className={styles.stockInfoItem}>
+            <p className={styles.stockInfoItem} key={stock.name}>
               <b>{stock.name}</b>: {stock.quantity}
             </p>
           ))

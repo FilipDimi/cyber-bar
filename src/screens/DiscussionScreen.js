@@ -9,7 +9,7 @@ const DiscussionScreen = (props) => {
   useEffect(() => {
     props.setCurPage(String(location.pathname));
     firstRender.current = false;
-  }, [location.pathname]);
+  }, [location.pathname, props]);
   return (
     <div style={{marginLeft: 50}}>
       <h1>Discussion</h1>

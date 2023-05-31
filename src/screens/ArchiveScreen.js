@@ -9,7 +9,7 @@ const ArchiveScreen = (props) => {
   useEffect(() => {
     props.setCurPage("");
     firstRender.current = false;
-  }, [location.pathname]);
+  }, [location.pathname, props]);
 
   return (
     <div style={{ marginLeft: 50 }}>
