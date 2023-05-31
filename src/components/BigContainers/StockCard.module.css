@@ -38,6 +38,23 @@
   margin-bottom: 18px;
 }
 
+.searchButton {
+  background-color: rgb(62, 139, 154);
+  padding: 8px;
+  border-radius: 15px;
+  color: #fff;
+  transition: 0.3s;
+  border: none;
+}
+
+.searchButton:hover {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.searchButton:active {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
 .quantityButtonContainer {
   margin-top: 15px;
   display: flex;
@@ -48,8 +65,8 @@
 
 .quantityHContainer {
   display: flex;
-  gap: 4px;
-  margin-bottom: 5px;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
 .quantityButton {
@@ -60,28 +77,49 @@
   font-weight: bold;
   font-size: 16px;
   border-radius: 10px;
+  transition: 0.2s;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.quantityButton:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.quantityButton:active {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .updateButton {
   border: none;
   padding: 10px 0px;
   margin-top: 10px;
-  margin-bottom: 15px;
-  background-color: #FF5335;
+  margin-bottom: 25px;
+  background-color: #ff5335;
   color: #353943;
   border-radius: 12px;
   width: 90%;
   font-size: 16px;
+  transition: 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.updateButton:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.updateButton:active {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .footerButtons {
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 8px;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8px;
 }
 
 .stockInfoItem {
-    color: rgb(62, 139, 154);
+  color: rgb(62, 139, 154);
 }

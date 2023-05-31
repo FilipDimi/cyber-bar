@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import styles from "./StockCard.module.css";
 
 const drinks = [
@@ -21,13 +22,7 @@ const StockCard = () => {
   const SearchDrinkTap = (props) => {
     return (
       <button
-        style={{
-          backgroundColor: "rgb(62, 139, 154)",
-          padding: "8px",
-          borderRadius: 15,
-          color: "#fff",
-          border: "none",
-        }}
+        className={styles.searchButton}
         onClick={selectItemHandler.bind(this, props.name)}
       >
         {props.name}
@@ -43,14 +38,9 @@ const StockCard = () => {
   const ResetButton = () => {
     return (
       <button
-        style={{
-          backgroundColor: "#FF5335",
-          padding: "8px",
-          borderRadius: 15,
-          color: "#fff",
-          border: "none",
-        }}
+        className={styles.searchButton}
         onClick={resetHandler}
+        style={{ backgroundColor: "#ff5335", color: "#353943" }}
       >
         RESET
       </button>
@@ -110,6 +100,7 @@ const StockCard = () => {
               }
             })}
           </div>
+
           {selectedItem === searchBox && searchBox.length > 2 && (
             <div className={styles.quantityButtonContainer}>
               <input

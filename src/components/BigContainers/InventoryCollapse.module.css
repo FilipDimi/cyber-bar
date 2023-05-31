@@ -1,0 +1,16 @@
+.mainContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.inventoryContainer {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: rgb(62, 139, 154);
+}

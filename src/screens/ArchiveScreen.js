@@ -3,7 +3,7 @@ import styles from "./ArchiveScreen.module.css";
 
 const ArchiveScreen = () => {
   return (
-    <div>
+    <div style={{marginLeft: 50}}>
       <h1>Archive</h1>
       <h3>Coming Soon 🤩</h3>
     </div>

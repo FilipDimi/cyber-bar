@@ -11,7 +11,7 @@ const DiscussionScreen = (props) => {
     firstRender.current = false;
   }, [location.pathname]);
   return (
-    <div>
+    <div style={{marginLeft: 50}}>
       <h1>Discussion</h1>
       <h3>Coming Soon 🤩</h3>
     </div>

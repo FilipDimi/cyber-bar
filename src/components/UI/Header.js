@@ -33,17 +33,17 @@ const Header = () => {
         <div className={styles.optionsContainer}>
           <div className={styles.optionsListContainer}>
             <ul style={{ listStyleType: "none" }}>
-              <Link to="archive/" style={{ textDecoration: "none" }}>
+              <Link to="archive/" style={{ textDecoration: "none" }} onClick={showOptionsHandler}>
                 <li className={styles.liStyle}>
                   <CiMemoPad size={22} style={{ marginRight: 5 }} /> Archive <i style={{marginLeft: 20}}>Coming Soon</i>
                 </li>
               </Link>
-              <Link to="12sdc349kcj9iqpnmxi9w30cmv32/" style={{ textDecoration: "none" }}>
+              <Link to="12sdc349kcj9iqpnmxi9w30cmv32/" style={{ textDecoration: "none" }} onClick={showOptionsHandler}>
                 <li className={styles.liStyle} disabled>
                   <CiRead size={22} style={{ marginRight: 5 }} /> God Mode  <i style={{marginLeft: 20}}>Coming Soon</i>
                 </li>
               </Link>
-                <li className={styles.liStyle}>
+                <li className={styles.liStyle} onClick={showOptionsHandler}>
                   <CiUndo size={22} color="#FF5335" style={{ marginRight: 5 }} /> <span style={{color: "#FF5335"}}>Log Out</span>
                 </li>
             </ul>
