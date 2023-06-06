@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Checkbox, Button } from "@nextui-org/react";
+import { Checkbox, Button, Badge } from "@nextui-org/react";
 import { CiLocationArrow1 } from "react-icons/ci";
 import styles from "./StockCard.module.css";
 
@@ -42,7 +42,7 @@ const StockCard = () => {
       <button
         className={styles.searchButton}
         onClick={resetHandler}
-        style={{ backgroundColor: "#ff5335", color: "#353943" }}
+        style={{ backgroundColor: "#ff5335", color: "#353943", marginLeft: 5 }}
       >
         RESET
       </button>
@@ -100,7 +100,7 @@ const StockCard = () => {
                   </div>
                 );
               } else {
-                return <span></span>
+                return <span></span>;
               }
             })}
           </div>
@@ -194,12 +194,14 @@ const StockCard = () => {
                 <button
                   className={styles.updateButton}
                   onClick={addHandler.bind(this, searchBox, quantity)}
+                  style={{ width: "30%", backgroundColor: "#19C964", color: "#fff" }}
                 >
                   Add
                 </button>
                 <button
                   className={styles.updateButton}
                   onClick={subHandler.bind(this, searchBox, quantity)}
+                  style={{ width: "70%", backgroundColor: "#F31260", color: "#fff" }}
                 >
                   Substract
                 </button>
@@ -216,7 +218,12 @@ const StockCard = () => {
         {stocks.length > 0 ? (
           stocks.map((stock) => (
             <p className={styles.stockInfoItem} key={stock.name}>
-              <b>{stock.name}</b>: {stock.quantity}
+              <b>{stock.name}: </b>
+              {stock.quantity <= 0 ? (
+                <Badge color="error">{stock.quantity}</Badge>
+              ) : (
+                <Badge color="success">{stock.quantity}</Badge>
+              )}
             </p>
           ))
         ) : (
