@@ -10,7 +10,7 @@ const InventoryScreen = (props) => {
   useEffect(() => {
     props.setCurPage(String(location.pathname));
     firstRender.current = false;
-  }, [location.pathname]);
+  }, [location.pathname, props]);
   return (
     <div style={{marginBottom: 200}}>
       <InventoryCollapse />

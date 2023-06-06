@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Checkbox, Button, Badge } from "@nextui-org/react";
+import { CiLocationArrow1 } from "react-icons/ci";
 import styles from "./StockCard.module.css";
 
 const drinks = [
@@ -15,6 +16,7 @@ const drinks = [
 let stocks = [];
 
 const StockCard = () => {
+  const [confirmReport, setConfirmReport] = useState(false);
   const [searchBox, setSearchBox] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
   const [quantity, setQuantity] = useState(0);
@@ -40,7 +42,7 @@ const StockCard = () => {
       <button
         className={styles.searchButton}
         onClick={resetHandler}
-        style={{ backgroundColor: "#ff5335", color: "#353943" }}
+        style={{ backgroundColor: "#ff5335", color: "#353943", marginLeft: 5 }}
       >
         RESET
       </button>
@@ -92,11 +94,13 @@ const StockCard = () => {
                 searchBox.length > 2
               ) {
                 return (
-                  <>
+                  <div key={drink}>
                     <SearchDrinkTap name={drink} />
                     <ResetButton />
-                  </>
+                  </div>
                 );
+              } else {
+                return <span></span>;
               }
             })}
           </div>
@@ -190,12 +194,14 @@ const StockCard = () => {
                 <button
                   className={styles.updateButton}
                   onClick={addHandler.bind(this, searchBox, quantity)}
+                  style={{ width: "30%", backgroundColor: "#19C964", color: "#fff" }}
                 >
                   Add
                 </button>
                 <button
                   className={styles.updateButton}
                   onClick={subHandler.bind(this, searchBox, quantity)}
+                  style={{ width: "70%", backgroundColor: "#F31260", color: "#fff" }}
                 >
                   Substract
                 </button>
@@ -211,14 +217,40 @@ const StockCard = () => {
         <h2 className={styles.stockInfoItem}>Summary</h2>
         {stocks.length > 0 ? (
           stocks.map((stock) => (
-            <p className={styles.stockInfoItem}>
-              <b>{stock.name}</b>: {stock.quantity}
+            <p className={styles.stockInfoItem} key={stock.name}>
+              <b>{stock.name}: </b>
+              {stock.quantity <= 0 ? (
+                <Badge color="error">{stock.quantity}</Badge>
+              ) : (
+                <Badge color="success">{stock.quantity}</Badge>
+              )}
             </p>
           ))
         ) : (
           <p className={styles.stockInfoItem} style={{ marginBottom: 30 }}>
             Your list is empty 🙁
           </p>
+        )}
+        {stocks.length > 0 && (
+          <>
+            <Checkbox
+              isSelected={confirmReport}
+              color="success"
+              onChange={setConfirmReport}
+            >
+              <span style={{ fontSize: 12 }}>
+                I agree that the summary is accurate
+              </span>
+            </Checkbox>
+            <Button
+              iconRight={<CiLocationArrow1 size={20} />}
+              color="success"
+              flat
+              css={{ marginBottom: 30 }}
+            >
+              Send Report
+            </Button>
+          </>
         )}
       </div>
     </div>

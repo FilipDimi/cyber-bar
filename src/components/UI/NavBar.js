@@ -28,7 +28,6 @@ const CustomNavLink = (props) => {
 };
 
 const NavBar = (props) => {
-  console.log(props.activePage);
   return (
     <>
       <div className={styles.navBarContainer}>

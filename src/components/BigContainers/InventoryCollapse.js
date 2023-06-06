@@ -83,6 +83,8 @@ const InventoryCollapse = () => {
                               </Table.Cell>
                             </Table.Row>
                           );
+                        } else {
+                          <span></span>
                         }
                       })}
                     </Table.Body>

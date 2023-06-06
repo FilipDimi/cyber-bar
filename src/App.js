@@ -12,10 +12,10 @@ import CheckInScreen from "./screens/CheckInScreen";
 import Header from "./components/UI/Header";
 import ArchiveScreen from "./screens/ArchiveScreen";
 import GodMode from "./screens/GodMode";
+import CocktailDetail from "./screens/CocktailDetail";
 
 function App() {
   const [activePage, setActivePage] = useState("");
-  console.ignoredYellowBox = ["Warning: Each", "Warning: Failed"];
 
   return (
     <Router>
@@ -25,10 +25,11 @@ function App() {
         <Route path="/" element={<Homepage setCurPage={setActivePage} />} />
         <Route path="inventory/" element={<InventoryScreen setCurPage={setActivePage} />} />
         <Route path="bar/" element={<MenuScreen setCurPage={setActivePage} />} />
+        <Route path="bardetail/:cocktail_id" element={<CocktailDetail setCurPage={setActivePage} />} />
         <Route path="discussion" element={<DiscussionScreen setCurPage={setActivePage} />} />
         <Route path="checkin/" element={<CheckInScreen setCurPage={setActivePage} />} />
-        <Route path="archive/" element={<ArchiveScreen />} />
-        <Route path="12sdc349kcj9iqpnmxi9w30cmv32/" element={<GodMode />} />
+        <Route path="archive/" element={<ArchiveScreen setCurPage={setActivePage} />} />
+        <Route path="12sdc349kcj9iqpnmxi9w30cmv32/" element={<GodMode setCurPage={setActivePage} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer actPage={activePage} />

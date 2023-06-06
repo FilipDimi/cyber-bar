@@ -1,3 +1,65 @@
 h1 {
-    color: rgb(62, 139, 154);
+  color: rgb(62, 139, 154);
+}
+
+.outsideContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 150px;
+}
+
+.searchCocktailField {
+    width: 80%;
+    border-radius: 8px;
+    border: 1px solid #3E8B9A;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  width: 90%;
+}
+.drinkContainer {
+  border-radius: 15px;
+  width: 45%;
+  height: 150px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  transition: 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.drinkContainer:hover {
+  scale: 1.03;
+}
+
+.drinkContainer:active {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.cocktailTitle {
+  margin-right: 7px;
+  margin-bottom: 7px;
+  font-size: 14px;
+}
+
+@media only screen and (min-width: 800px) {
+  .drinkContainer {
+    width: 15%;
+  }
+
+  .mainContainer {
+    justify-content: flex-start;
+  }
 }
