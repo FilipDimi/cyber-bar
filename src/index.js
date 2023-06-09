@@ -10,7 +10,7 @@ import {
 import styles from "./index.module.css"
 
 const client = new ApolloClient({
-  uri: "http://127.0.0.1:8000/graphql",
+  uri: "http://cyber-bar.herokuapp.com/graphql",
   cache: new InMemoryCache(),
 });
 

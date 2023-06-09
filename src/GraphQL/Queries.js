@@ -1,12 +1,64 @@
 import { gql } from "@apollo/client";
 
-export const GET_DUMMIES = gql`
+export const GET_BEVERAGES = gql`
   query {
-    allDummies {
+    allBeverages {
+      name
+      id
+      count
+      criticalCount
+      category {
+        id
+      }
+    }
+  }
+`;
+
+export const GET_CATEGORIES = gql`
+  query {
+    allBarcategories {
+      name
+      id
+    }
+  }
+`;
+
+export const GET_COCKTAILS = gql`
+  query {
+    allCocktails {
       id
       name
-      level
-      date
+      color
+    }
+  }
+`;
+
+export const GET_LOW_STOCK = gql`
+  query {
+    lowBeverages {
+      name
+      count
+    }
+  }
+`;
+
+export const SEARCH_COCKTAIL = gql`
+  query searchCocktail($id: String!) {
+    searchCocktail(id: $id) {
+      name
+      glass
+      creator {
+        firstName
+      }
+      ingrediants {
+        beverage {
+          name
+        }
+        count
+      }
+      steps {
+        description
+      }
     }
   }
 `;
