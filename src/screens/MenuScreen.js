@@ -1,16 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useQuery } from "@apollo/client";
 import styles from "./MenuScreen.module.css";
 
-const cocktails = [
-  { title: "Espresso Martini", id: "1", color: "#a03912" },
-  { title: "Pomegranate Cosmo", id: "2", color: "#f90f5a" },
-  { title: "Indigo Gimlet", id: "3", color: "#d7269b" },
-  { title: "Agave Margarita", id: "4", color: "#d3d9a4" },
-  { title: "Angry Orchard", id: "5", color: "#e698be" },
-  { title: "Sour Strawberry", id: "6", color: "#ff2222" },
-  { title: "Blue Lagoon", id: "7", color: "#05becb" },
-];
+import { GET_COCKTAILS } from "../GraphQL/Queries";
+import Loading from "../components/UI/Loading";
 
 const BarItem = (props) => {
   const navigate = useNavigate();
@@ -34,39 +28,49 @@ const MenuScreen = (props) => {
   const firstRender = useRef(true);
   const location = useLocation();
   const [searchCocktail, setSearchCocktail] = useState("");
-  let selectedCocktailList = cocktails;
+  const cocktails = useQuery(GET_COCKTAILS);
+  let selectedCocktailList = cocktails.loading
+    ? []
+    : cocktails.data.allCocktails;
 
   useEffect(() => {
     props.setCurPage(String(location.pathname));
     firstRender.current = false;
   }, [location.pathname, props]);
 
-  if (searchCocktail.length > 0) {
-    selectedCocktailList = cocktails.filter((cocktail) => {
-      return cocktail.title.toLowerCase().indexOf(searchCocktail.toLowerCase()) !== -1
-    })
+  if (!cocktails.loading && searchCocktail.length > 0) {
+    selectedCocktailList = cocktails.data.allCocktails.filter((cocktail) => {
+      return (
+        cocktail.name.toLowerCase().indexOf(searchCocktail.toLowerCase()) !==
+        -1
+      );
+    });
   }
 
-  return (
-    <div className={styles.outsideContainer}>
-      <input
-        type="text"
-        placeholder="Search for a Cocktail"
-        className={styles.searchCocktailField}
-        value={searchCocktail}
-        onChange={e => setSearchCocktail(e.target.value)}
-      />
-      <div className={styles.mainContainer}>
-        {selectedCocktailList.map((cocktaile) => (
-          <BarItem
-            title={cocktaile.title}
-            id={cocktaile.id}
-            color={cocktaile.color}
-          />
-        ))}
+  if (cocktails.loading) {
+    return <Loading />;
+  } else {
+    return (
+      <div className={styles.outsideContainer}>
+        <input
+          type="text"
+          placeholder="Search for a Cocktail"
+          className={styles.searchCocktailField}
+          value={searchCocktail}
+          onChange={(e) => setSearchCocktail(e.target.value)}
+        />
+        <div className={styles.mainContainer}>
+          {selectedCocktailList.map((cocktaile) => (
+            <BarItem
+              title={cocktaile.name}
+              id={cocktaile.id}
+              color={cocktaile.color}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default MenuScreen;
