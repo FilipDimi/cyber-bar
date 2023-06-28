@@ -19,3 +19,12 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+
+export const VERIFY_TOKEN = gql`
+  mutation verifyToken($token: String!) {
+    verifyToken(token: $token) {
+      payload
+    }
+  }
+`

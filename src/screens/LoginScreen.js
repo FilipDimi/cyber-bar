@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { LOGIN_USER } from "../GraphQL/Mutations";
+import { CHECK_LOGIN } from "../GraphQL/Queries";
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from "@nextui-org/react";
 
@@ -19,8 +20,7 @@ const LoginScreen = () => {
       .then((res) => {
         localStorage.setItem("authToken", res.data.tokenAuth.token);
         navigate("../", { replace: true });
-        // window.location.reload();
-        console.log(res)
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.message)
