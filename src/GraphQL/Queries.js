@@ -62,3 +62,13 @@ export const SEARCH_COCKTAIL = gql`
     }
   }
 `;
+
+export const CHECK_LOGIN = gql`
+    query currentUser($token: String!) {
+        currentUser(token: $token) {
+            id
+            firstName
+            lastName
+        }
+    }
+`;

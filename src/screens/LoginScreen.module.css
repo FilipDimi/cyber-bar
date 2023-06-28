@@ -1,0 +1,16 @@
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    width: 100%;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color:#3F8B9A;
+    padding: 20px;
+    border-radius: 20px;
+}

@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import StockCard from "../components/BigContainers/StockCard";
+import RequireAuth from "../system/RequireAuth";
 
 const Homepage = (props) => {
   const firstRender = useRef(true);

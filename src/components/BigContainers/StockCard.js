@@ -1,36 +1,69 @@
 import React, { useState } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { Checkbox, Button, Badge } from "@nextui-org/react";
 import { CiLocationArrow1 } from "react-icons/ci";
 import { GET_BEVERAGES } from "../../GraphQL/Queries";
+import { ADD_DRINK_TO_TAB } from "../../GraphQL/Mutations";
+
 import styles from "./StockCard.module.css";
 import Loading from "../UI/Loading";
 
-let stocks = [];
-
 const StockCard = () => {
+  const [addItemToTab] = useMutation(ADD_DRINK_TO_TAB);
+  const list_beverages = useQuery(GET_BEVERAGES);
+
   const [confirmReport, setConfirmReport] = useState(false);
   const [searchBox, setSearchBox] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
   const [quantity, setQuantity] = useState(0);
-  let drinks = [];
+  const [drinkId, setDrinkId] = useState("");
 
-  const list_beverages = useQuery(GET_BEVERAGES);
+  const [msgType, setMsgType] = useState("");
+  const [msg, setMsg] = useState("");
+
+  const onFinish = (quan) => {
+    addItemToTab({
+      variables: {
+        bevId: drinkId,
+        userId: "2a6199f7-b22f-43aa-8a7c-a1f21ea3768e",
+        count: quan.toString(),
+      },
+    })
+      .then((res) => {
+        setSearchBox("");
+        setSelectedItem("");
+        setDrinkId("");
+        setQuantity(0);
+        setMsgType("success");
+        setMsg("The drink has been added to the list");
+        console.log(res);
+      })
+      .catch((err) => {
+        setSearchBox("");
+        setSelectedItem("");
+        setDrinkId("");
+        setQuantity(0);
+        setMsgType("error");
+        setMsg(err.message);
+        console.log(err);
+      });
+  };
 
   const SearchDrinkTap = (props) => {
     return (
       <button
         className={styles.searchButton}
-        onClick={selectItemHandler.bind(this, props.name)}
+        onClick={selectItemHandler.bind(this, props.name, props.id)}
       >
         {props.name}
       </button>
     );
   };
 
-  const selectItemHandler = (name) => {
+  const selectItemHandler = (name, id) => {
     setSearchBox(name);
     setSelectedItem(name);
+    setDrinkId(id);
   };
 
   const ResetButton = () => {
@@ -60,17 +93,17 @@ const StockCard = () => {
   };
 
   const addHandler = (name, quan) => {
+    onFinish(quan);
     resetHandler();
-    stocks.push({ name: name, quantity: quan });
   };
 
   const subHandler = (name, quan) => {
+    onFinish(quan);
     resetHandler();
-    stocks.push({ name: name, quantity: -quan });
   };
 
   if (list_beverages.loading) {
-    <Loading />
+    <Loading />;
   } else {
     return (
       <div
@@ -99,7 +132,7 @@ const StockCard = () => {
                 ) {
                   return (
                     <div key={drink.name}>
-                      <SearchDrinkTap name={drink.name} />
+                      <SearchDrinkTap name={drink.name} id={drink.id} />
                       <ResetButton />
                     </div>
                   );
@@ -208,7 +241,7 @@ const StockCard = () => {
                   </button>
                   <button
                     className={styles.updateButton}
-                    onClick={subHandler.bind(this, searchBox, quantity)}
+                    onClick={subHandler.bind(this, searchBox, -quantity)}
                     style={{
                       width: "70%",
                       backgroundColor: "#F31260",
@@ -227,23 +260,8 @@ const StockCard = () => {
           style={{ marginTop: 50, marginBottom: 100 }}
         >
           <h2 className={styles.stockInfoItem}>Summary</h2>
-          {stocks.length > 0 ? (
-            stocks.map((stock) => (
-              <p className={styles.stockInfoItem} key={stock.name}>
-                <b>{stock.name}: </b>
-                {stock.quantity <= 0 ? (
-                  <Badge color="error">{stock.quantity}</Badge>
-                ) : (
-                  <Badge color="success">{stock.quantity}</Badge>
-                )}
-              </p>
-            ))
-          ) : (
-            <p className={styles.stockInfoItem} style={{ marginBottom: 30 }}>
-              Your list is empty 🙁
-            </p>
-          )}
-          {stocks.length > 0 && (
+          <p>TO DO FILL IT FROM QUERY</p>
+          {true > 0 && (
             <>
               <Checkbox
                 isSelected={confirmReport}
