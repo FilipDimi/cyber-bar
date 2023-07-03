@@ -20,13 +20,6 @@ import LoginScreen from "./screens/LoginScreen";
 function App() {
   const [activePage, setActivePage] = useState("");
 
-  // * GraphQL
-  const check_login = useQuery(CHECK_LOGIN, {
-    variables: {
-      token: localStorage.getItem("user_token"),
-    },
-  });
-
   return (
     <Router>
       <Header />

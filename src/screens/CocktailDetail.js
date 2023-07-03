@@ -5,6 +5,7 @@ import { Loading, Table } from "@nextui-org/react";
 import styles from "./CocktailDetail.module.css";
 
 import { SEARCH_COCKTAIL } from "../GraphQL/Queries";
+import RequireAuth from "../system/RequireAuth";
 
 
 const CocktailDetail = (props) => {
@@ -28,6 +29,7 @@ const CocktailDetail = (props) => {
   } else {
     return (
       <div className={styles.outsideContainer}>
+        <RequireAuth />
         <div className={styles.mainContainer}>
           <h2 className={styles.cocktailTitle}>
             {cocktail_detail.data.searchCocktail.name}

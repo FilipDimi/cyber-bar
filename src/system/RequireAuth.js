@@ -1,32 +1,34 @@
-import React from "react";
-import { useQuery, useMutation } from "@apollo/client";
-import { Navigate, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { Navigate } from "react-router-dom";
 import { VERIFY_TOKEN } from "../GraphQL/Mutations";
-import { Loading } from "@nextui-org/react";
+import { USER_ID } from "../GraphQL/Queries";
+
 
 const RequireAuth = () => {
-  const authed = localStorage.getItem("authToken") ? localStorage.getItem("authToken") : "1qw3s";
-  const location = useLocation();
+  const [checkLogin] = useMutation(VERIFY_TOKEN);
+  const [logged, setLogged] = useState(true);
+  const authed = localStorage.getItem("authToken")
+    ? localStorage.getItem("authToken")
+    : "1qw3s";
 
-  // * GraphQL
-  const check_login = useMutation(VERIFY_TOKEN, {
-    variables: {
-      token: authed,
-    },
-  });
 
-  if (check_login.loading) {
-    return (
-      <h1 style={{marginTop: 400}}>Loading</h1>
-    );
-  } else {
-    if (check_login.error) {
-      return (
-        <Navigate to="/login" replace state={{ path: location.pathname }} />
-      );
-    } else {
-      return <Navigate to="/" replace state={{ path: location.pathname }} />
-    }
+  useEffect(() => {
+    checkLogin({
+      variables: { token: authed },
+    })
+      .then((res) => {
+        setLogged(true);
+        console.log(res);
+      })
+      .catch((err) => {
+        setLogged(false);
+        console.log(err);
+      });
+  }, [authed]);
+
+  if (logged === false) {
+    return <Navigate to="/login" replace />;
   }
 };
 

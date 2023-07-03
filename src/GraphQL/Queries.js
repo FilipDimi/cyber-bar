@@ -71,3 +71,22 @@ export const CHECK_LOGIN = gql`
         }
     }
 `;
+
+export const USER_ID = gql`
+    query userId($username: String!) {
+      userId(username: $username) {
+        id
+      }
+    }
+`;
+
+export const USER_TAB = gql`
+    query userTab($userPk: String!) {
+      userTab(userPk: $userPk) {
+        beverage {
+          name
+        }
+        count
+      }
+    }
+`

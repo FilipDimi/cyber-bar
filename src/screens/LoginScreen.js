@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation, useLazyQuery } from "@apollo/client";
 import { LOGIN_USER } from "../GraphQL/Mutations";
-import { CHECK_LOGIN } from "../GraphQL/Queries";
+import { USER_ID } from "../GraphQL/Queries";
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from "@nextui-org/react";
 
@@ -12,6 +12,8 @@ const LoginScreen = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [loginUser] = useMutation(LOGIN_USER);
+  const [fetchUserId, setFetchUserId] = useState(null);
+  const [getId, { loading, data }] = useLazyQuery(USER_ID);
 
   const onFinish = () => {
     loginUser({
@@ -23,9 +25,22 @@ const LoginScreen = () => {
         window.location.reload();
       })
       .catch((err) => {
-        console.log(err.message)
+        console.log(err.message);
       });
   };
+
+  const userLoginHandler = () => {
+    onFinish();
+    getId({variables: { username: username}});
+  }
+
+  if (data) {
+    setFetchUserId(data.userId.id)
+  }
+
+  if (data && fetchUserId === null) {
+    localStorage.setItem("userId", data.userId.id)
+  }
 
   return (
     <div className={styles.mainContainer}>
@@ -43,7 +58,12 @@ const LoginScreen = () => {
           onChange={(e) => setPassword(e.target.value)}
           name="password"
         />
-        <Button bordered color="warning" size="sm" onPress={onFinish}>
+        <Button
+          bordered
+          color="warning"
+          size="sm"
+          onPress={userLoginHandler}
+        >
           Log In
         </Button>
       </form>

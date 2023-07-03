@@ -5,6 +5,7 @@ import styles from "./MenuScreen.module.css";
 
 import { GET_COCKTAILS } from "../GraphQL/Queries";
 import Loading from "../components/UI/Loading";
+import RequireAuth from "../system/RequireAuth";
 
 const BarItem = (props) => {
   const navigate = useNavigate();
@@ -41,17 +42,18 @@ const MenuScreen = (props) => {
   if (!cocktails.loading && searchCocktail.length > 0) {
     selectedCocktailList = cocktails.data.allCocktails.filter((cocktail) => {
       return (
-        cocktail.name.toLowerCase().indexOf(searchCocktail.toLowerCase()) !==
-        -1
+        cocktail.name.toLowerCase().indexOf(searchCocktail.toLowerCase()) !== -1
       );
     });
   }
 
   if (cocktails.loading) {
+    <RequireAuth />;
     return <Loading />;
   } else {
     return (
       <div className={styles.outsideContainer}>
+        <RequireAuth />
         <input
           type="text"
           placeholder="Search for a Cocktail"
