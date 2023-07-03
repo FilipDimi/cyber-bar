@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { Checkbox, Button, Badge } from "@nextui-org/react";
 import { CiLocationArrow1 } from "react-icons/ci";
-import { GET_BEVERAGES } from "../../GraphQL/Queries";
+import { GET_BEVERAGES, USER_TAB } from "../../GraphQL/Queries";
 import { ADD_DRINK_TO_TAB } from "../../GraphQL/Mutations";
 
 import styles from "./StockCard.module.css";
@@ -11,6 +11,11 @@ import Loading from "../UI/Loading";
 const StockCard = () => {
   const [addItemToTab] = useMutation(ADD_DRINK_TO_TAB);
   const list_beverages = useQuery(GET_BEVERAGES);
+  const list_tab = useQuery(USER_TAB, {
+    variables: {
+      userPk: localStorage.getItem("userId"),
+    },
+  });
 
   const [confirmReport, setConfirmReport] = useState(false);
   const [searchBox, setSearchBox] = useState("");
@@ -25,7 +30,7 @@ const StockCard = () => {
     addItemToTab({
       variables: {
         bevId: drinkId,
-        userId: "2a6199f7-b22f-43aa-8a7c-a1f21ea3768e",
+        userId: localStorage.getItem("userId"),
         count: quan.toString(),
       },
     })
@@ -95,11 +100,13 @@ const StockCard = () => {
   const addHandler = (name, quan) => {
     onFinish(quan);
     resetHandler();
+    window.location.reload();
   };
 
   const subHandler = (name, quan) => {
     onFinish(quan);
     resetHandler();
+    window.location.reload();
   };
 
   if (list_beverages.loading) {
@@ -260,9 +267,19 @@ const StockCard = () => {
           style={{ marginTop: 50, marginBottom: 100 }}
         >
           <h2 className={styles.stockInfoItem}>Summary</h2>
-          <p>TO DO FILL IT FROM QUERY</p>
-          {true > 0 && (
+          {list_tab.error && <h3 style={{color: "#3f8b9a"}}>Your list is Empty 😢</h3>}
+          {!list_tab.error && !list_tab.loading && list_tab.data.userTab.length > 0 && (
             <>
+              <div>
+                <ul>
+                  {list_tab.data.userTab.map((item) => (
+                    <li style={{marginBottom: 12}}>
+                      <span>{item.beverage.name}</span>{" "}
+                      { item.count < 0 ? <Badge color="error">{item.count}</Badge> : <Badge color="success">{item.count}</Badge>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <Checkbox
                 isSelected={confirmReport}
                 color="success"

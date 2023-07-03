@@ -24,6 +24,7 @@ const RequireAuth = () => {
       .catch((err) => {
         setLogged(false);
         console.log(err);
+        // localStorage.clear();
       });
   }, [authed]);
 

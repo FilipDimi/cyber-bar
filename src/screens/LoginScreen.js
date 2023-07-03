@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation, useLazyQuery } from "@apollo/client";
 import { LOGIN_USER } from "../GraphQL/Mutations";
 import { USER_ID } from "../GraphQL/Queries";
@@ -15,6 +15,11 @@ const LoginScreen = () => {
   const [fetchUserId, setFetchUserId] = useState(null);
   const [getId, { loading, data }] = useLazyQuery(USER_ID);
 
+
+  useEffect(()=> {
+    localStorage.clear();
+  }, [username, password])
+
   const onFinish = () => {
     loginUser({
       variables: { username: username, password: password },
@@ -26,6 +31,8 @@ const LoginScreen = () => {
       })
       .catch((err) => {
         console.log(err.message);
+        alert("Wrong Credentials")
+        window.location.reload();
       });
   };
 

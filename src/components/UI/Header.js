@@ -5,17 +5,24 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const [showOptions, setShowOptions] = useState(false);
+  const authToken = localStorage.getItem("authToken")
 
   const showOptionsHandler = () => {
     setShowOptions(!showOptions);
   };
+
+  const logOutHandler = () => {
+    setShowOptions(!showOptions);
+    localStorage.clear();
+    window.location.reload();
+  }
 
   return (
     <>
       <div className={styles.headerContainer}>
         <div className={styles.header}>
           <h3 style={{ marginLeft: 30 }}>CyberBar</h3>
-          <button
+          {authToken && <button
             className={styles.settingsButton}
             style={{
               marginRight: 30,
@@ -26,7 +33,7 @@ const Header = () => {
             onClick={showOptionsHandler}
           >
             <CiSettings size={18} style={{ marginRight: 5 }} /> Options
-          </button>
+          </button>}
         </div>
       </div>
       {showOptions && (
@@ -43,7 +50,7 @@ const Header = () => {
                   <CiRead size={22} style={{ marginRight: 5 }} /> God Mode  <i style={{marginLeft: 20}}>Coming Soon</i>
                 </li>
               </Link>
-                <li className={styles.liStyle} onClick={showOptionsHandler}>
+                <li className={styles.liStyle} onClick={logOutHandler}>
                   <CiUndo size={22} color="#FF5335" style={{ marginRight: 5 }} /> <span style={{color: "#FF5335"}}>Log Out</span>
                 </li>
             </ul>
