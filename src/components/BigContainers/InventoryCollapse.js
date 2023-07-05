@@ -6,12 +6,6 @@ import styles from "./InventoryCollapse.module.css";
 import { GET_CATEGORIES, GET_BEVERAGES, GET_LOW_STOCK } from "../../GraphQL/Queries";
 import Loading from "../UI/Loading";
 
-const low = [
-  { category: "Wine", name: "Bogle", quantity: 5 },
-  { category: "Beer", name: "Corona", quantity: 10 },
-  { category: "Cordial", name: "Amaretto", quantity: 2 },
-  { category: "Vodka", name: "Belvedere", quantity: 2 },
-];
 
 const InventoryCollapse = () => {
   const barCategories = useQuery(GET_CATEGORIES);
@@ -80,7 +74,7 @@ const InventoryCollapse = () => {
                               <Table.Row key={drink.name}>
                                 <Table.Cell>{drink.name}</Table.Cell>
                                 <Table.Cell>
-                                  <Badge>{drink.count}</Badge>
+                                  {drink.count < drink.criticalCount ? <Badge color="error">{drink.count}</Badge> : <Badge>{drink.count}</Badge>}
                                 </Table.Cell>
                               </Table.Row>
                             );

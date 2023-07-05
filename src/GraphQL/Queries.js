@@ -6,6 +6,7 @@ export const GET_BEVERAGES = gql`
       name
       id
       count
+      color
       criticalCount
       category {
         id

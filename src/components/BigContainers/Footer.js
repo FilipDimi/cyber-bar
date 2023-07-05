@@ -15,18 +15,25 @@ const Footer = (props) => {
     })
       .then((res) => {
         setLogged(true);
-        console.log(res)
+        console.log(res);
       })
       .catch((err) => {
         setLogged(false);
-        console.log(err)
+        console.log(err);
       });
   }, [logged]);
 
   if (logged) {
-    return <NavBar activePage={props.actPage} />
+    return <NavBar activePage={props.actPage} />;
   } else {
-    return <span></span>
+    return (
+      <div className={styles.navBarContainer}>
+        <div className={styles.mainHContainer}>
+          <span>Marcus Usage Only</span>
+          <span style={{fontStyle: 'italic', marginTop: -10, fontSize: 12}}>by Filip Dimitrievski</span>
+        </div>
+      </div>
+    );
   }
 };
 

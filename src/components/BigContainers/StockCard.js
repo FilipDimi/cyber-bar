@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery, useMutation, useLazyQuery } from "@apollo/client";
 import { Checkbox, Button, Badge } from "@nextui-org/react";
 import { CiLocationArrow1 } from "react-icons/ci";
 import { GET_BEVERAGES, USER_TAB } from "../../GraphQL/Queries";

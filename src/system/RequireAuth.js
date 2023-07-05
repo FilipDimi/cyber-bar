@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Navigate } from "react-router-dom";
 import { VERIFY_TOKEN } from "../GraphQL/Mutations";
-import { USER_ID } from "../GraphQL/Queries";
-
 
 const RequireAuth = () => {
   const [checkLogin] = useMutation(VERIFY_TOKEN);
@@ -24,9 +22,9 @@ const RequireAuth = () => {
       .catch((err) => {
         setLogged(false);
         console.log(err);
-        // localStorage.clear();
+        localStorage.clear();
       });
-  }, [authed]);
+  }, [authed, checkLogin]);
 
   if (logged === false) {
     return <Navigate to="/login" replace />;
