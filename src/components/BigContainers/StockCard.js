@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQuery, useMutation, useLazyQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { Checkbox, Button, Badge } from "@nextui-org/react";
 import { CiLocationArrow1 } from "react-icons/ci";
 import { GET_BEVERAGES, USER_TAB } from "../../GraphQL/Queries";
@@ -41,7 +41,7 @@ const StockCard = () => {
         setQuantity(0);
         setMsgType("success");
         setMsg("The drink has been added to the list");
-        console.log(res);
+        window.location.reload();
       })
       .catch((err) => {
         setSearchBox("");
@@ -50,7 +50,7 @@ const StockCard = () => {
         setQuantity(0);
         setMsgType("error");
         setMsg(err.message);
-        console.log(err);
+        window.location.reload();
       });
   };
 
@@ -100,13 +100,11 @@ const StockCard = () => {
   const addHandler = (name, quan) => {
     onFinish(quan);
     resetHandler();
-    window.location.reload();
   };
 
   const subHandler = (name, quan) => {
     onFinish(quan);
     resetHandler();
-    window.location.reload();
   };
 
   if (list_beverages.loading) {
@@ -140,13 +138,13 @@ const StockCard = () => {
                   return (
                     <div key={drink.name}>
                       <SearchDrinkTap name={drink.name} id={drink.id} />
-                      <ResetButton />
                     </div>
                   );
                 } else {
                   return <span></span>;
                 }
               })}
+              {searchBox.length > 2 && <ResetButton />}
             </div>
 
             {selectedItem === searchBox && searchBox.length > 2 && (
