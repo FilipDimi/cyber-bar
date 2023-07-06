@@ -71,7 +71,7 @@ const CocktailDetail = (props) => {
           </Table>
           <div>
             <h3 className={styles.ingrediantsTitle}>Glass Type: {cocktail_detail.data.searchCocktail.glass}</h3>
-            <h3 className={styles.ingrediantsTitle}>Ingrediants</h3>
+            <h3 className={styles.ingrediantsTitle}>Steps</h3>
             <ol>
               {cocktail_detail.data.searchCocktail.steps.map((step) => (
                 <li key={step.description}>{step.description}</li>
