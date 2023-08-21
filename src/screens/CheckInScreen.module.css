@@ -1,0 +1,33 @@
+.backgroundImage {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    padding: 50px;
+  }
+  
+  .imageTextContainer {
+    background-color: rgba(93, 0, 10, 0.15);
+    color: #fff;
+    height: 150px;
+    text-align: center;
+  }
+  
+  .hvcenter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  
+  .justText {
+      text-align: justify;
+      text-justify: inter-word;
+  }
+  

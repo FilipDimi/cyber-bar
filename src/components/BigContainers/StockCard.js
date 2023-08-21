@@ -141,7 +141,7 @@ const StockCard = () => {
                     </div>
                   );
                 } else {
-                  return <span></span>;
+                  return <></>
                 }
               })}
               {searchBox.length > 2 && <ResetButton />}

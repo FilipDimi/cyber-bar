@@ -28,3 +28,14 @@ export const VERIFY_TOKEN = gql`
     }
   }
 `
+
+
+export const CHECK_IN = gql`
+mutation checkIn($bevId: String!, $quantity: String!) {
+  checkIn(bevId: $bevId, quantity: $quantity) {
+    beverage {
+      name
+      count
+    }
+  }
+}`
