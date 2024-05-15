@@ -14,6 +14,7 @@ const CheckInScreen = (props) => {
   const [selectedItem, setSelectedItem] = useState("");
   const [quantity, setQuantity] = useState();
   const [drinkId, setDrinkId] = useState("");
+  const [tempList, setTempList] = useState({name: "", quantity: ""})
 
   const list_beverages = useQuery(GET_BEVERAGES);
   const [checkinSubmit] = useMutation(CHECK_IN);
@@ -35,7 +36,11 @@ const CheckInScreen = (props) => {
 
   const submitCheckInHandler = () => {
     onFinish();
-    window.location.reload();
+    setTempList({name: selectedItem, quantity: quantity})
+    setSearchBox("");
+    setSelectedItem("");
+    setQuantity(null);
+    setDrinkId("")
   };
 
   const SearchDrinkTap = (props) => {
@@ -126,14 +131,20 @@ const CheckInScreen = (props) => {
             onClick={submitCheckInHandler}
             style={{
               marginTop: 10,
-              paddingLeft: 20,
-              paddingRight: 20,
-              paddingTop: 5,
-              paddingBottom: 5,
+              paddingLeft: 23,
+              paddingRight: 23,
+              paddingTop: 8,
+              paddingBottom: 8,
+              borderRadius: 12,
+              borderWidth: 0
             }}
           >
             Submit
           </button>
+        </div>
+        <div>
+        <h2 className={styles.stockHeading}>Last Change</h2>
+          {tempList.name && <p>{tempList.name}: {tempList.quantity}</p>}
         </div>
       </>
     );

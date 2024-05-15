@@ -31,3 +31,16 @@
       text-justify: inter-word;
   }
   
+  .stockInput {
+    border-radius: 12px;
+    border: 1.5px solid rgb(62, 139, 154);
+    padding: 10px 15px;
+    margin-top: 7px;
+  }
+
+  .searchButton {
+    border-radius: 12px;
+    padding: 7px 10px;
+    border-width: 0px;
+    margin-top: 10px;
+  }
