@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
+import emailjs from "@emailjs/browser";
 import { Checkbox, Button, Badge } from "@nextui-org/react";
 import { CiLocationArrow1 } from "react-icons/ci";
-import { GET_BEVERAGES, USER_TAB } from "../../GraphQL/Queries";
+import { GET_BEVERAGES, USER_TAB, GET_LOW_STOCK } from "../../GraphQL/Queries";
 import { ADD_DRINK_TO_TAB } from "../../GraphQL/Mutations";
 
 import styles from "./StockCard.module.css";
@@ -16,6 +17,7 @@ const StockCard = () => {
       userPk: localStorage.getItem("userId"),
     },
   });
+  const low_on_stock = useQuery(GET_LOW_STOCK);
 
   const [confirmReport, setConfirmReport] = useState(false);
   const [searchBox, setSearchBox] = useState("");
@@ -25,6 +27,39 @@ const StockCard = () => {
 
   const [msgType, setMsgType] = useState("");
   const [msg, setMsg] = useState("");
+  useEffect(() => emailjs.init("8EZO3rbTOLmaVMwYJ"), []);
+
+  const sendEmail = async () => {
+    const serviceId = "default_service";
+    const templateId = "template_scfogqt";
+    let low_list = [];
+    let temp_tab = [];
+
+    for (let i = 0; i < low_on_stock.data.lowBeverages.length; i++) {
+      low_list.push({
+        low_name: low_on_stock.data.lowBeverages[i].name,
+        low_quantity: low_on_stock.data.lowBeverages[i].count,
+      });
+    }
+
+    for (let i = 0; i < list_tab.data.userTab.length; i++) {
+      temp_tab.push({
+        today_name: list_tab.data.userTab[i].beverage.name,
+        today_quantity: list_tab.data.userTab[i].count,
+      });
+    }
+
+    try {
+      await emailjs.send(serviceId, templateId, {
+        todays_stocking: temp_tab,
+        low_stock: low_list,
+      });
+      alert("Email Successfully Sent!");
+    } catch (error) {
+      console.log(error);
+    } finally {
+    }
+  };
 
   const onFinish = (quan) => {
     addItemToTab({
@@ -141,7 +176,7 @@ const StockCard = () => {
                     </div>
                   );
                 } else {
-                  return <></>
+                  return <></>;
                 }
               })}
               {searchBox.length > 2 && <ResetButton />}
@@ -265,38 +300,47 @@ const StockCard = () => {
           style={{ marginTop: 50, marginBottom: 100 }}
         >
           <h2 className={styles.stockInfoItem}>Summary</h2>
-          {list_tab.error && <h3 style={{color: "#3f8b9a"}}>Your list is Empty 😢</h3>}
-          {!list_tab.error && !list_tab.loading && list_tab.data.userTab.length > 0 && (
-            <>
-              <div>
-                <ul>
-                  {list_tab.data.userTab.map((item) => (
-                    <li style={{marginBottom: 12}}>
-                      <span>{item.beverage.name}</span>{" "}
-                      { item.count < 0 ? <Badge color="error">{item.count}</Badge> : <Badge color="success">{item.count}</Badge>}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <Checkbox
-                isSelected={confirmReport}
-                color="success"
-                onChange={setConfirmReport}
-              >
-                <span style={{ fontSize: 12 }}>
-                  I agree that the summary is accurate
-                </span>
-              </Checkbox>
-              <Button
-                iconRight={<CiLocationArrow1 size={20} />}
-                color="success"
-                flat
-                css={{ marginBottom: 30 }}
-              >
-                Send Report
-              </Button>
-            </>
+          {list_tab.error && (
+            <h3 style={{ color: "#3f8b9a" }}>Your list is Empty 😢</h3>
           )}
+          {!list_tab.error &&
+            !list_tab.loading &&
+            list_tab.data.userTab.length > 0 && (
+              <>
+                <div>
+                  <ul>
+                    {list_tab.data.userTab.map((item) => (
+                      <li style={{ marginBottom: 12 }}>
+                        <span>{item.beverage.name}</span>{" "}
+                        {item.count < 0 ? (
+                          <Badge color="error">{item.count}</Badge>
+                        ) : (
+                          <Badge color="success">{item.count}</Badge>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <Checkbox
+                  isSelected={confirmReport}
+                  color="success"
+                  onChange={setConfirmReport}
+                >
+                  <span style={{ fontSize: 12 }}>
+                    I agree that the summary is accurate
+                  </span>
+                </Checkbox>
+                <Button
+                  iconRight={<CiLocationArrow1 size={20} />}
+                  color="success"
+                  flat
+                  css={{ marginBottom: 30 }}
+                  onPress={sendEmail}
+                >
+                  Send Report
+                </Button>
+              </>
+            )}
         </div>
       </div>
     );
